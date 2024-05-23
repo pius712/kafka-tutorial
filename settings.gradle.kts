@@ -1,8 +1,8 @@
-rootProject.name = "kt-boilerplate"
+rootProject.name = "kafka-tutorial"
 
 include(
-    "boilerplate-core-api",
-    "boilerplate-common",
+    "kafka-tutorial-core-api",
+    "kafka-tutorial-common",
     "storage:db-core",
     "infra:logging",
     "clients:example"
