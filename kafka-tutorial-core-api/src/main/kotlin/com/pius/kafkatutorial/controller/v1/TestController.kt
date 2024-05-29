@@ -14,14 +14,9 @@ class TestController(
 
     @PostMapping("/create")
     fun create(): Long {
-        return testService.produce()
+        testService.produce()
+        return 1L
     }
 
-    @GetMapping("/{memberId}")
-    fun getMember(
-        @PathVariable memberId: Long
-    ): ApiResponse<MemberResponseDto> {
-        val member = testService.find(memberId)
-        return ApiResponse.ok(MemberResponseDto(member.name))
-    }
+    
 }

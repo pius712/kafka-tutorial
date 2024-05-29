@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement
 
 @Configuration
 @EnableTransactionManagement
-@EntityScan(basePackages = ["com.pius.boilerplate"])
+@EntityScan(basePackages = ["com.pius.kafkatutorial"])
 @EnableJpaRepositories(basePackages = ["com.pius.kafkatutorial"])
 class JpaConfig {
 }

@@ -1,12 +1,30 @@
 version: '3.8'
 services:
-  dining-with-db:
+  kafka-tutorial-db:
     image: mysql:8.0
     cap_add:
       - SYS_NICE
     restart: always
     environment:
-      - MYSQL_DATABASE=boilerplate
+      - MYSQL_DATABASE=kafka_tutorial
       - MYSQL_ROOT_PASSWORD=test
     ports:
       - '3306:3306'
+
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+    restart: unless-stopped
+
+  kafka:
+    build: .
+    ports:
+      - "9092"
+    environment:
+      DOCKER_API_VERSION: 1.22
+      KAFKA_ADVERTISED_HOST_NAME: 192.168.99.100
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped

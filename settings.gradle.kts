@@ -3,6 +3,7 @@ rootProject.name = "kafka-tutorial"
 include(
     "kafka-tutorial-core-api",
     "kafka-tutorial-common",
+    "kafka-tutorial-consumer",
     "storage:db-core",
     "infra:logging",
     "clients:example"
