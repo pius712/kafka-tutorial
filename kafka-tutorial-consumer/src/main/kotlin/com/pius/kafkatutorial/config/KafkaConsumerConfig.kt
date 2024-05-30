@@ -16,10 +16,12 @@ class KafkaConsumerConfig {
         config[ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG] = "localhost:9092"
         config[ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG] = String::class.java
         config[ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG] = String::class.java
-        // 이건 사실상 필수인듯?
+        // subscribe 하는 경우, 필요함.
+        // 컨슘 하는 순간 그룹이 생김
         config[ConsumerConfig.GROUP_ID_CONFIG] = "consumer-group"
-        // 선택 설정
 
+        // 선택 설정
+        config[ConsumerConfig.AUTO_OFFSET_RESET_CONFIG] = "latest" // default
 
         return DefaultKafkaConsumerFactory(config)
     }
