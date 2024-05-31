@@ -3,8 +3,10 @@ package com.pius.kafkatutorial.config
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory
 import org.springframework.kafka.core.ConsumerFactory
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory
+import org.springframework.kafka.listener.ContainerProperties
 
 @Configuration
 class KafkaConsumerConfig {
@@ -22,8 +24,14 @@ class KafkaConsumerConfig {
 
         // 선택 설정
         config[ConsumerConfig.AUTO_OFFSET_RESET_CONFIG] = "latest" // default
-
         return DefaultKafkaConsumerFactory(config)
     }
 
+    @Bean
+    fun listenerContainerFactory(): ConcurrentKafkaListenerContainerFactory<String, String> {
+        val factory = ConcurrentKafkaListenerContainerFactory<String, String>()
+        factory.containerProperties.ackMode = ContainerProperties.AckMode.MANUAL
+
+        return factory
+    }
 }
